@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 656385665687354240}
   - component: {fileID: 656385665687354255}
   - component: {fileID: 2841835881230067898}
+  - component: {fileID: -7570394560125367888}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -104,6 +105,33 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9399289303fba484ca83674cb7359b3d, type: 3}
   - {fileID: 21300000, guid: 88080a815d3722e49a64236387ffc5c0, type: 3}
   orbObj: {fileID: 656385666790395922}
+  coords: {x: 0, y: 0}
+--- !u!61 &-7570394560125367888
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656385665687354254}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.01, y: 0.01}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &656385666790395921
 GameObject:
   m_ObjectHideFlags: 0
