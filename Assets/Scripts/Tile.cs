@@ -60,8 +60,6 @@ public class Tile : MonoBehaviour
     {
         if (owner != -1)
             orbObj.color = gameManager.playerColors[owner];
-        if (orbCount >= maxOrbs)
-            return;
         orbObj.sprite = orbSprites[orbCount];
 
     }

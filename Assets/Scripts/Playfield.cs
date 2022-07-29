@@ -7,6 +7,9 @@ public class Playfield : MonoBehaviour
     public GameObject tilePrefab;
     public Tile[] tileList;
     public Vector2Int mapSize;
+
+    public GameObject movingOrbPrefab;
+
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
@@ -35,12 +38,12 @@ public class Playfield : MonoBehaviour
             return false;
         return true;
     }
-    Tile GetTile(int x, int y)
+    public Tile GetTile(int x, int y)
     {
         return tileList[y * mapSize.x + x];
     }
 
-    Tile GetTile(Vector2Int v)
+    public Tile GetTile(Vector2Int v)
     {
         return tileList[v.y * mapSize.x + v.x];
     }
@@ -52,26 +55,29 @@ public class Playfield : MonoBehaviour
 
         if (IsValidCoord(x - 1, y))
         {
-            GetTile(x - 1, y).owner = color;
-            GetTile(x - 1, y).AddOrb();
+            GameObject go = Instantiate(movingOrbPrefab);
+            MovingOrb orb = go.GetComponent<MovingOrb>();
+            orb.Setup(new Vector2Int(x, y), new Vector2Int(x - 1, y), color);
         }
 
         if (IsValidCoord(x + 1, y))
         {
-            GetTile(x + 1, y).owner = color;
-            GetTile(x + 1, y).AddOrb();
+            GameObject go = Instantiate(movingOrbPrefab);
+            MovingOrb orb = go.GetComponent<MovingOrb>();
+            orb.Setup(new Vector2Int(x, y), new Vector2Int(x + 1, y), color);
         }
         if (IsValidCoord(x, y - 1))
         {
-            GetTile(x, y - 1).owner = color;
-            GetTile(x, y - 1).AddOrb();
+            GameObject go = Instantiate(movingOrbPrefab);
+            MovingOrb orb = go.GetComponent<MovingOrb>();
+            orb.Setup(new Vector2Int(x, y), new Vector2Int(x, y - 1), color);
         }
         if (IsValidCoord(x, y + 1))
         {
-            GetTile(x, y + 1).owner = color;
-            GetTile(x, y + 1).AddOrb();
+            GameObject go = Instantiate(movingOrbPrefab);
+            MovingOrb orb = go.GetComponent<MovingOrb>();
+            orb.Setup(new Vector2Int(x, y), new Vector2Int(x, y + 1), color);
         }
-        CheckForDeadPlayers();
     }
 
     public void CheckForDeadPlayers()
@@ -94,8 +100,11 @@ public class Playfield : MonoBehaviour
     IEnumerator ExplosionLoop()
     {
         gameManager.LockMouse();
-        while(CheckForOrbExplosions())
-            yield return new WaitForSeconds(0.5f);
+        while (CheckForOrbExplosions())
+        {
+            yield return new WaitForSeconds(0.35f);
+            CheckForDeadPlayers();
+        }
         gameManager.UnlockMouse();
     }
 

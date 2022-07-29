@@ -12,8 +12,17 @@ public class GameManager : MonoBehaviour
 
     public bool mouseOn = true;
 
-
-    bool IsOver()
+    public int GetWinner()
+    {
+        if (!IsOver())
+            return -1;
+        else
+            for (int i = 0; i < maxPlayers; i++)
+                if (playerAlive[i])
+                    return i;
+        return -1;
+    }
+    public bool IsOver()
     {
         int playerCount = 0;
         for (int i = 0; i < maxPlayers; i++)
@@ -32,7 +41,8 @@ public class GameManager : MonoBehaviour
 
     public void UnlockMouse()
     {
-        mouseOn = true;
+        if (!IsOver())
+            mouseOn = true;
     }
 
 
