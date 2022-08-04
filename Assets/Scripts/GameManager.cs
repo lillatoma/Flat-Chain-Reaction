@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
         GameInfoModule gim = FindObjectOfType<GameInfoModule>();
 
         if (gim)
+            Debug.Log("Gim found");
+        else
+            Debug.Log("Where is gim?");
+
+
+        if (gim)
             maxPlayers = gim.players;
 
         for (int i = 0; i < maxPlayers; i++)
