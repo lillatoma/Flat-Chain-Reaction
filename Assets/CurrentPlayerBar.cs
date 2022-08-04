@@ -15,7 +15,7 @@ public class CurrentPlayerBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        image = FindObjectOfType<Image>();
+        image = GetComponent<Image>();
         gameManager = FindObjectOfType<GameManager>();
     }
 

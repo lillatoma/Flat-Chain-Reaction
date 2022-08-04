@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+
     public int owner = -1;
     public int orbCount = 0;
     public int maxOrbs = 4;
@@ -11,7 +12,7 @@ public class Tile : MonoBehaviour
     public SpriteRenderer orbObj;
 
     public Vector2Int coords;
-
+    public float rotationSpeed = 360;
     private Playfield playfield;
     private GameManager gameManager;
 
@@ -64,10 +65,21 @@ public class Tile : MonoBehaviour
 
     }
 
+    
+    void RotateOrbs()
+    {
+        float percent = (1f * orbCount) / (1f * (maxOrbs - 1));
+
+        float rotateAdd = Time.deltaTime * (percent * percent * percent * percent) * rotationSpeed;
+
+        orbObj.transform.rotation = Quaternion.Euler(orbObj.transform.rotation.eulerAngles + new Vector3(0, 0, rotateAdd));
+
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        RotateOrbs();
     }
 }

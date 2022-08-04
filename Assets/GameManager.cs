@@ -59,10 +59,25 @@ public class GameManager : MonoBehaviour
         }
     }    
 
+    public void SetGameUpForBeginning()
+    {
+        currentPlayer = 0;
+        GameInfoModule gim = FindObjectOfType<GameInfoModule>();
+
+        if (gim)
+            maxPlayers = gim.players;
+
+        for (int i = 0; i < maxPlayers; i++)
+            playerAlive[i] = true;
+
+        mouseOn = true;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetGameUpForBeginning();
     }
 
     // Update is called once per frame

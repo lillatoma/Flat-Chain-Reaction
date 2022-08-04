@@ -32,6 +32,17 @@ public class Playfield : MonoBehaviour
             }
     }
 
+    public void RestartGame()
+    {
+        for(int i = 0; i < tileList.Length; i++)
+        {
+            tileList[i].orbCount = 0;
+            tileList[i].owner = -1;
+            tileList[i].UpdateOrbs();
+        }
+        gameManager.SetGameUpForBeginning();
+    }
+
     bool IsValidCoord(int x, int y)
     {
         if (x < 0 || x >= mapSize.x || y < 0 || y >= mapSize.y)
